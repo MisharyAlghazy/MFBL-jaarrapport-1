@@ -40,7 +40,8 @@
 \usepackage{changes}
 
 % Compact layout for the 6-page limit
-\geometry{left=23mm, right=23mm, top=24mm, bottom=26mm} % template: hscale 0.75, vscale 0.8
+% margins (template: hscale 0.75, vscale 0.8); reset avoids over-specification warnings
+\geometry{reset, a4paper, left=23mm, right=23mm, top=24mm, bottom=26mm}
 \setlist{itemsep=1pt, parsep=0pt, topsep=3pt}
 \setlength{\emergencystretch}{1.5em} % avoid lines sticking into the margin
 \renewcommand*{\bibfont}{\footnotesize}
@@ -81,6 +82,7 @@
   linkcolor=accent,
   urlcolor=accent,
 ]{hyperref}
+\usepackage{bookmark}
 
 % Company details: change them here only.
 \newcommand{\company}{Henk Capital Logistics}
@@ -90,6 +92,7 @@
 \begin{document}
 
 % The front cover is the title page (cover.tex).
+\frontmatter
 \include{cover}
 
 % Use Arabic numerals for the page numbers of the chapters.
