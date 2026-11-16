@@ -1,4 +1,17 @@
+% =====================================================================
+% Business Plan, Maritime Business Game, round 1
+% MT44040 Maritime Finance, Business and Law, TU Delft
+%
+% Structure (template: Introduction TU Delft v8.0, Appendix 1):
+%   cover.tex                 title page: business plan, company, round, names
+%   introduction.tex          Ch. 1: idea, mission, market, strategy, SWOT
+%   investment-proposal.tex   Ch. 2: free cash flow, NPV, IRR, financing
+%   report.bib                sources
+%
+% Maximum 6 pages INCLUDING the title page; more pages are penalised.
+% =====================================================================
 \documentclass[
+  oneside, % no blank pages between chapters (page limit)
   % fourier,
   % print,
 ]{tudelft-report}[2026/06/01]
@@ -10,19 +23,56 @@
   \setotherlanguage{dutch}
   % define babel syntax when using polyglossia, so we can use either package
 \else
-  % american is needed for \blindtext and \blinddocument
   \RequirePackage[dutch,american,british]{babel}
   % \NewDocumentEnvironment{dutch}{\begin{foreignlanguage}{dutch}}{\end{foreignlanguage}}
 \fi
 \RequirePackage{csquotes}
 
 \usepackage[
-  % style=apa,
+  style=numeric-comp,
+  sorting=none,
 ]{biblatex}
 \addbibresource{report.bib}
 
+\usepackage{booktabs}
+\usepackage{tabularx}
+\usepackage{enumitem}
 \usepackage{changes}
-\usepackage[math]{blindtext} % filler text
+
+% Compact layout for the 6-page limit
+\geometry{left=23mm, right=23mm, top=24mm, bottom=26mm} % template: hscale 0.75, vscale 0.8
+\setlist{itemsep=1pt, parsep=0pt, topsep=3pt}
+\setlength{\emergencystretch}{1.5em} % avoid lines sticking into the margin
+\renewcommand*{\bibfont}{\footnotesize}
+\renewcommand{\topfraction}{0.9}
+\renewcommand{\bottomfraction}{0.8}
+\renewcommand{\textfraction}{0.1}
+\renewcommand{\floatpagefraction}{0.8}
+\setcounter{topnumber}{3}
+\setcounter{totalnumber}{4}
+\setlength{\textfloatsep}{10pt plus 2pt minus 2pt}
+\setlength{\floatsep}{8pt plus 2pt minus 2pt}
+\setlength{\intextsep}{8pt plus 2pt minus 2pt}
+\setlength{\abovecaptionskip}{3pt}
+\setlength{\belowcaptionskip}{3pt}
+% chapter number next to the title and smaller than the template default (96pt)
+\makeatletter
+\renewcommand{\chapternumberfont}{%
+  \fontsize{44pt}{44pt}%
+  \if@fourier\bfseries\else\robotoslab\bfseries\fi
+  \color{chapternumbercolor}\selectfont
+}
+\makeatother
+\renewcommand\chapterlinesformat[3]{#2#3}
+\RedeclareSectionCommand[beforeskip=0pt, afterskip=1\baselineskip]{chapter}
+\RedeclareSectionCommand[beforeskip=1.2ex plus .4ex minus .2ex]{paragraph}
+
+% Mission statement: indented italic paragraph
+\newenvironment{mission}
+  {\par\smallskip\begingroup\leftskip=2em\rightskip=2em\noindent\itshape\ignorespaces}
+  {\par\endgroup\smallskip}
+% SWOT combination such as S1--O1, never split over two lines
+\newcommand{\combi}[2]{\mbox{#1--#2}}
 
 % Hyperlinks are blue, except in print mode, when they are all black.
 \usepackage[
@@ -32,38 +82,30 @@
   urlcolor=accent,
 ]{hyperref}
 
+% Company details: change them here only.
+\newcommand{\company}{Henk Capital Logistics}
+\newcommand{\companyshort}{HCL}
+
 
 \begin{document}
 
-% metadata such as author, title, etc. are defined in cover.tex
+% The front cover is the title page (cover.tex).
 \include{cover}
-
-% Use Roman numerals for the page numbers of the title pages and table of
-% contents.
-\frontmatter
-
-% Include an optional title page.
-\include{title}
-
-\include{preface}
-
-\tableofcontents
 
 % Use Arabic numerals for the page numbers of the chapters.
 \mainmatter%
 
-\include{introduction}
+\input{introduction}
+\input{investment-proposal}
 
-% Use letters for the chapter numbers of the appendices.
-\appendix
+\printbibliography[heading=subbibintoc, title={References}]
 
-\include{lorem-ipsum}
+\section*{AI Statement}
+{\footnotesize
+For this business plan for the course MT44040 Maritime Finance, Business and Law, we have used generative AI to obtain inspiration for the overall structure of the report, to draft parts of the text and to improve the grammar, style and layout. In all cases, we have reviewed and corrected the work and remain fully responsible for the content of the report.
+\par}
 
-% Chapters without numbers in the back
-\backmatter%
-\printbibliography[heading=bibintoc]
-
-\MakeCoverBack%
+% No back cover: it would count towards the 6-page limit.
+% \MakeCoverBack%
 
 \end{document}
-

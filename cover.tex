@@ -22,8 +22,14 @@
 % document metadata
 \title{Business plan}
 \subtitle{Henk Capital Logistics}
-\author{J. Random Author}
+\author{Aymen el Moubarik, Raphael van Gennip, Jonathan Wilbrink}
 \newcommand{\isbn}{978-90-8593-000-0}
+% names, round and course as printed on the front cover (= title page)
+\newcommand{\coverauthors}{Aymen el Moubarik\\Raphael van Gennip\\Jonathan Wilbrink}
+\newcommand{\covertext}{%
+  \textbf{Maritime Business Game, round 1}\\[1ex]
+  MT44040 Maritime Finance, Business and Law\\
+  Delft University of Technology, November 2026}
 
 % set lengths used for the cover
 \setcoverbleed{1.5mm}
@@ -49,7 +55,7 @@
       at (30mm, \oldpaperheight-30mm)
       {{\begin{minipage}%
           [t]% vertical alignment of minipage w.r.t. surroundings; irrelevant since it is in a tikz node here
-          [90mm]% height of minipage
+          [102mm]% height of minipage
           [b]% vertical alignment of text within minipage
           {\dimexpr(\oldpaperwidth-60mm)\relax}% width of minipage
         \KOMAoptions{parskip=half}
@@ -59,17 +65,14 @@
         {\headingfont
           {\fontsize{60pt}{60pt}\selectfont\@title\\[20pt]}
           \ifx\@subtitle\@empty\else
-            {\fontsize{30pt}{30pt}\selectfont\@subtitle\\[30pt]}
+            {\fontsize{30pt}{30pt}\selectfont\@subtitle\\[24pt]}
           \fi
         }
         \color{black}
-        \Huge J.\ Random Author
+        {\LARGE\coverauthors\par}
         \vfill
         \large
-        \textbf{Cover text}\\[1ex]
-        Possibly spanning multiple lines
-
-        \isbn
+        \covertext
       \end{minipage}}
     };
     % darken background slightly so logo is more visible

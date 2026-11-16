@@ -1,194 +1,182 @@
-\chapter{Introduction}
+% =====================================================================
+% Chapter 1: Introduction (template: +/- 3 pages)
+% Rubric: Company Idea, Mission & Market Analysis 30%
+%         SWOT, Confrontation Matrix, Resulting Strategy 15%
+% =====================================================================
+\chapter{Introduction}\label{ch:introduction}
 
-This document is intended to be both an example of the TU Delft \LaTeX{} template for reports which can be used for both BSc and MSc theses, as well as a short introduction to its use. It is not intended to be a general introduction to \LaTeX{} itself,\footnote{We recommend \url{http://en.wikibooks.org/wiki/LaTeX} as a reference and a starting point for new users.} and we will assume the reader to be familiar with the basics of creating and compiling documents.
+% ---------------------------------------------------------------------
+\section{Company Idea}\label{sec:idea}
 
-Instructions on how to use this template under Windows, Linux and MacOS, and which \LaTeX{} packages are required, can be found in \texttt{README.txt}.
-
-
-\section{Document Structure}
-
-Since a report, and especially a thesis, might be a substantial document, it is convenient to break it up into smaller pieces. In this template we therefore give every chapter its own file. The chapters (and appendices) are gathered together in \texttt{report.tex}, which is the master file describing the overall structure of the document. \texttt{report.tex} starts with the line
-\begin{verbatim}
-  \documentclass{tudelft-report}
-\end{verbatim}
-which loads the TU Delft report template. The template is based on the \LaTeX{} \texttt{scrbook} document class and stored in \texttt{tudelft-report.cls}. The document class accepts several comma-separated options. The default language is (UK) English, but this can be changed to Dutch (\emph{e.g.}, for bachelor theses) by specifying the \texttt{dutch} option:
-\begin{verbatim}
-  \documentclass[dutch]{tudelft-report}
-\end{verbatim}
-Furthermore, hyperlinks are shown in blue, which is convenient when reader the report on a computer, but can be expensive when printing and does not serve the purpose it has in a digital document. They can be turned black with the \texttt{print} option. This will also turn the chapter numbers grey instead of light blue.
-
-If the document becomes large, it is easy to miss warnings about the layout in the \LaTeX{} output. In order to locate problem areas, add the \texttt{draft} option to the \texttt{\textbackslash documentclass} line. This will display a vertical bar in the margins next to the paragraphs that require attention.
-
-This template has the option to generate a cover page by including the file \texttt{cover.tex}. See the next section for a detailed description.
-
-The contents of the report are included between the \texttt{\textbackslash{}begin\{document\}} and \texttt{\textbackslash{}end\{docu\-ment\}} commands, and split into four parts by
-\begin{enumerate}
-  \item \texttt{\textbackslash{}frontmatter}, which uses Roman numerals for the page numbers and is used for the title page and the table of contents;
-  \item \texttt{\textbackslash{}mainmatter}, which uses Arabic numerals for the page numbers and is the style for the chapters;
-  \item \texttt{\textbackslash{}appendix}, which uses letters for the chapter numbers, starting with `A'.
-  \item \texttt{\textbackslash{}backmatter}, which has no chapter numbers at all.
-\end{enumerate}
-The title page is defined in a separate file, \texttt{title.tex}. Additionally, it is possible to include a preface, containing, for example, the acknowledgements. An example can be found in \texttt{preface.tex}. The table of contents is generated automatically with the \texttt{\textbackslash{}tableofcontents} command. Chapters are included after \texttt{\textbackslash{}mainmatter} and appendices after \texttt{\textbackslash{}appendix}. For example, \texttt{\textbackslash include\{in\-troduction\}} includes \texttt{introduction.tex}.
-
-\subsection{Bibliography}
-
-Lists of references are handled by \texttt{biblatex}.
-The present document has the following preamble
-\begin{verbatim}
-\usepackage[style=apa]{biblatex}
-\addbibresource{report.bib}
-\end{verbatim}
-The first line tells us that the references will be formatted according 
-to the APA-standards.
-
-The second line points to a file that contains the references in a database-like format.
-Use one such line for every database that you want to use.
-
-The general way this works is as follows (using the present document as an example):
-\begin{verbatim}
-lualatex report
-biber report
-lualatex report
-lualatex report
-\end{verbatim}
-The first line typesets the document and gathers information for the lists of references; the second line will generate lists of references for all chapters, these will be read in during execution of the third and fourth lines.
-The repetition of \texttt{lualatex report} is needed to get all the page numbers in links and references right.
-Depending on the editor that you use much of this can be done by clicking on a suitable icon or by hitting suitably defined hot keys. On Overleaf, all of this is done when you press \texttt{ctrl+r} or \texttt{ctrl+enter}.
-
-The \texttt{biblatex} package has many options and can be tailored to almost every need; you can explore its documentation at \texttt{https://www.ctan.org/pkg/biblatex}
-
-To get numbered references just use
-\begin{verbatim}
-\usepackage{biblatex}
-\addbibresource{report.bib}
-\end{verbatim}
-That is, remove \texttt{style=apa}.
-
-To give some examples we cite an article: \textcite{Einstein1906},
-a book: \textcite{MR1039321}, another article: \textcite{MR3860876},
-and a book with more than one editor: \textcite{MR3204729}.
-
-
-\section{Cover and Title Page}
-
-This template will automatically generate a cover page if you include the file \texttt{cover.tex}.
-This file defines three commands:
-
-\texttt{\textbackslash{}MakeCoverFront} inserts just the front cover
-
-\texttt{\textbackslash{}MakeCoverFull} inserts the complete cover (front, back, and spine) with some `bleed', i.e., a slightly enlarged edge to allow for cutting of the page after printing.
-
-\texttt{\textbackslash{}MakeCoverBack} inserts just the back cover
-
-\texttt{cover.tex} can be adapted according to your liking; this process is relatively free-format, with some examples given in \texttt{cover.tex}.
-
-For a thesis it is desirable to have a title page within the document, containing information like the thesis committee members. To give you greater flexibility over the layout of this page, it is described in the file \texttt{title.tex}. Modify this file according to your needs. The example text is in English, but Dutch translations are provided in the comments. Note that for a thesis, the title page is subject to requirements which differ by faculty. Make sure to check these requirements before printing.
-
-
-\section{Chapters}
-
-Each chapter has its own file. For example, the \LaTeX{} source of this chapter can be found in \texttt{introduc\-tion.tex}. A chapter starts with the command
-\begin{verbatim}
-  \chapter{Chapter title}
-\end{verbatim}
-This starts a new page, prints the chapter number and title and adds a link in the table of contents. If the title is very long, it may be desirable to use a shorter version in the page headers and the table of contents. This can be achieved by specifying the short title in brackets:
-\begin{verbatim}
-  \chapter[Short title]{Very long title with many words 
-    which could not possibly fit on one line}
-\end{verbatim}
-
-Chapters are subdivided into sections, subsections, subsubsections, and, optionally, paragraphs and subparagraphs. All can have a title, but only sections and subsections are numbered:
-\section{\textbackslash section\{\ldots\}}
-\subsection{\textbackslash subsection\{\ldots\}}
-\subsubsection{\textbackslash subsubsection\{\ldots\}}
-\paragraph{\textbackslash paragraph\{\ldots\}}
-
-\section{Fonts and Colors}
-
-The main font in this template is Arial, with the main headers in Roboto Slab, according to the TU Delft corporate style.
-Alternatively, using the class option \texttt{\textbackslash{}documentclass[fourier]}, the serif font Utopia can be used (provided by the package \texttt{fourier}).
-In that latter case, Helvetica will be used in the main headers.
-
-The corporate colors of the TU Delft are \textcolor{tud Blue}{\textbf{blue}}, \textbf{black} and \textbf{white}, available, respectively, via \texttt{\textbackslash text\-color\{tud Blue\}\{...\}}, \texttt{\textbackslash textcolor\{black\}\linebreak[0]\{...\}} and \texttt{\textbackslash textcolor\{white\}\linebreak[0]\{...\}}.
-Apart from these three, the house style defines the following basic colors, that can be used via \texttt{\textbackslash text\-color\{tud \textit{colorname}\}\{...\}}, where \texttt{\textit{colorname}} is any of:
-
-\vspace{\topsep}\noindent
-\begin{minipage}{.32\textwidth}
-  \begin{itemize}
-    \itemsep 0pt
-    \parskip 0pt
-    \item \textcolor{tud DarkBlue}{\textbf{Dark blue}}
-    \item \textcolor{tud Turquoise}{\textbf{Turquoise}}
-    \item \textcolor{tud RoyalBlue}{\textbf{Royal blue}}
-    \item \textcolor{tud LightPurple}{\textbf{Light purple}}
-  \end{itemize}
-\end{minipage}
-\begin{minipage}{.32\textwidth}
-  \begin{itemize}
-    \itemsep 0pt
-    \parskip 0pt
-    \item \textcolor{tud Pink}{\textbf{Pink}}
-    \item \textcolor{tud Burgundy}{\textbf{Burgundy}}
-    \item \textcolor{tud Red}{\textbf{Red}}
-    \item \textcolor{tud Orange}{\textbf{Orange}}
-  \end{itemize}
-\end{minipage}
-\begin{minipage}{.32\textwidth}
-  \begin{itemize}
-    \itemsep 0pt
-    \parskip 0pt
-    \item \textcolor{tud Yellow}{\textbf{Yellow}}
-    \item \textcolor{tud Green}{\textbf{Green}}
-    \item \textcolor{tud ForestGreen}{\textbf{Forest green}}
-    \item \textcolor{tud DarkGrey}{\textbf{Dark grey}}
-  \end{itemize}
-\end{minipage}
-\vspace{\topsep}
-
-For shading of areas, specific reduced coverages of blue and dark grey may be used, but mind contrast and readability.
-These reduced coverages are:
-\begin{itemize} 
-    \itemsep 0pt
-    \parskip 0pt
-  \item \textcolor{tud Blue}{\textbf{Blue:}}
-    \tikz[baseline]{\node[fill=tud Blue!50, anchor=base] {50\,\%,};}%
-    \tikz[baseline]{\node[fill=tud Blue!10, anchor=base] {10\,\%};}
-  \item \textcolor{tud DarkGrey}{\textbf{Dark grey:}}
-    \tikz[baseline]{\node[fill=tud DarkGrey!60, anchor=base] {\textcolor{white}{60\,\%,}};}%
-    \tikz[baseline]{\node[fill=tud DarkGrey!40, anchor=base] {40\,\%,};}%
-    \tikz[baseline]{\node[fill=tud DarkGrey!15, anchor=base] {15\,\%};}
+\company{} (\companyshort{}) is a dry bulk tramp shipping company. We carry bulk and general cargo on voyage charters, anywhere in the world where the next profitable cargo loads, and focus on the parcel size that dominates the market: 30,000 to 70,000~t. This requires:
+\begin{itemize}
+  \item \textbf{A capital-light fleet} of two to three second-hand Handymax bulk carriers with own cranes (about 66,000~DWT), bought close to scrap value (about USD~2~million each in the practice round). A larger vessel is only added when a chain of large cargoes earns more per invested dollar.
+  \item \textbf{Capital:} USD~5~million of equity from Mr.\ Jones, senior bank debt and a working-capital facility.
+  \item \textbf{Information:} weekly AIS data on competitor positions (USD~100 per week), consultant rate reports and our own voyage and bidding model, which matched the practice round within 2\% in 18 checks.
+  \item \textbf{A lean organisation:} each founder runs one department: chartering, vessel management or finance.
 \end{itemize}
 
-Furthermore, there are paler versions of these colors to be used for data visualisation only:
+% ---------------------------------------------------------------------
+\section{Company Mission}\label{sec:mission}
 
-\vspace{\topsep}\noindent
-\begin{minipage}{.32\textwidth}
-  \begin{itemize}
-    \itemsep 0pt
-    \parskip 0pt
-    \item \textcolor{tud DarkBluePale}{\textbf{Dark blue}}
-    \item \textcolor{tud TurquoisePale}{\textbf{Turquoise}}
-    \item \textcolor{tud RoyalBluePale}{\textbf{Royal blue}}
-    \item \textcolor{tud LightPurplePale}{\textbf{Light purple}}
-  \end{itemize}
-\end{minipage}
-\begin{minipage}{.32\textwidth}
-  \begin{itemize}
-    \itemsep 0pt
-    \parskip 0pt
-    \item \textcolor{tud PinkPale}{\textbf{Pink}}
-    \item \textcolor{tud BurgundyPale}{\textbf{Burgundy}}
-    \item \textcolor{tud RedPale}{\textbf{Red}}
-    \item \textcolor{tud OrangePale}{\textbf{Orange}}
-  \end{itemize}
-\end{minipage}
-\begin{minipage}{.32\textwidth}
-  \begin{itemize}
-    \itemsep 0pt
-    \parskip 0pt
-    \item \textcolor{tud YellowPale}{\textbf{Yellow}}
-    \item \textcolor{tud GreenPale}{\textbf{Green}}
-    \item \textcolor{tud ForestGreenPale}{\textbf{Forest green}}
-    \item \textcolor{tud DarkGreyPale}{\textbf{Dark grey}}
-  \end{itemize}
-\end{minipage}
+\begin{mission}
+\company{} carries its customers' bulk cargo on time and at a competitive price with the leanest fleet in the market, to earn the highest possible return on every dollar of its shareholder's capital.
+\end{mission}
+\noindent For charterers, our selling point is reliability and flexibility: vessels planned several voyages ahead arrive before the laycan opens, and their own cranes work in ports without fast cranes. For Mr.\ Jones, it is capital discipline: old vessels bought near scrap value have little left to depreciate, so most of their margin reaches the profit, and every vessel, loan and bid is judged on its contribution to the return on equity (RoE). Unlike competitors that price the same small European cargoes at cost plus a margin, we compare all cargoes worldwide with each vessel's position and bid the rate with the highest expected profit. We strive for an RoE in the top quarter of the game, without ever using the overdraft.
+
+% ---------------------------------------------------------------------
+\section{Market Analysis}\label{sec:market}
+
+This analysis uses the practice-round data~\cite{MBGpractice}; the key figures will be checked again at the start of round~1.
+
+\paragraph{Demand.} The game simulates a worldwide tramp market of 51~ports in 16~regions and 13~cargo types~\cite{MBGrefmanual}. Cargo is offered as voyage charters in a weekly reverse auction in which the lowest bid wins. No contracts of affreightment (COA) or time charters were offered, so all income comes from the spot market. About 27 new contracts appear every week without overlap, almost half of which load within two weeks. The largest group of cargoes is 30,000--70,000~t, cargoes above 100,000~t are rare, and Shanghai and Rotterdam handle by far the most trade.
+
+\paragraph{Freight rates.} Long-haul exports from the Far East and Oceania pay the highest rates, up to about 45~USD/t to Europe (Table~\ref{tab:rates}). North-west Europe has the largest volume at the lowest rates, but its short voyages still earn a good margin per day. On the time-charter market, the Handymax earns the highest mid-size day rate, about USD~18,000: three times its daily operating costs (OPEX) of about USD~6,000.
+
+\begin{table}[tbp]
+  \centering\small
+  \caption{Freight rates in the practice round (consultant forecast for weeks 27--52)~\cite{MBGpractice}.}
+  \label{tab:rates}
+  \begin{minipage}[t]{0.53\textwidth}
+    \centering
+    \textbf{(a) Voyage charters, Handy size, by loading region}\\[3pt]
+    \begin{tabular}{@{}lrl@{}}
+      \toprule
+      Loading region & USD/t & Volume \\
+      \midrule
+      Far East                  & 36 (45\textsuperscript{a}) & large \\
+      Oceania                   & 32 (41\textsuperscript{a}) & medium \\
+      West coast South America  & 28 & small \\
+      North America             & 23 (13\textsuperscript{b}) & large \\
+      North-west Europe         & 19 & largest \\
+      Mediterranean, Black Sea  & 16 & medium \\
+      \bottomrule
+    \end{tabular}\\[2pt]
+    {\footnotesize \textsuperscript{a}\,to Europe \quad \textsuperscript{b}\,within North America}
+  \end{minipage}\hfill
+  \begin{minipage}[t]{0.43\textwidth}
+    \centering
+    \textbf{(b) Time charters by size class}\\[3pt]
+    \begin{tabular}{@{}lrr@{}}
+      \toprule
+      Size class & kDWT & USD/day \\
+      \midrule
+      Small Handy      & 17.8    & 10,800 \\
+      Handy            & 35.1    & 13,600 \\
+      \textbf{Handymax} & \textbf{66.8} & \textbf{18,000} \\
+      Panamax          & 87.1    & 14,800 \\
+      Capesize         & 117--229 & 14,300--18,000 \\
+      \bottomrule
+    \end{tabular}
+  \end{minipage}
+\end{table}
+
+\paragraph{Supply and competition.} In the practice round, 22 companies operated 39 vessels, at least ten of them Handymaxes, and AIS data showed competitors' vessels idle for five to seven weeks: the fleet is large compared with the number of profitable cargoes. Price competition, however, is weak. Only 37\% of 86 contracts were sailed at all, and our winning bids were at 81--100\% of the maximum rate. The share sailed falls with cargo size: 58\% below 20,000~t, 41\% for 20,000--70,000~t and only 12\% above 70,000~t. With the orderbook indicator falling from 16.6 to 14.3, little new capacity is coming.
+
+\paragraph{Vessel prices and costs.} Trading vessels does not pay: prices moved less than 1\% per week, and the computer buys at no more than 95\% of market value~\cite{MBGrefmanual}. Depreciation decides the choice of vessel: the purchase price minus the scrap value (25~USD/DWT) is written off over the remaining life up to 30~years~\cite{MBGrefmanual}. An old Handymax costs USD~2.0--2.1~million, close to its scrap value of about USD~1.7~million, whereas an old Handy-size vessel (USD~4.7--7~million, scrap value USD~0.4--0.9~million) depreciates by USD~2.3--4~million a year. Larger vessels have fixed costs of USD~7,700--15,000 per day and are limited by port drafts: in Antwerp (12.2~m), a Capesize can load only about 58\% of its deadweight. Bunker prices are forecast to fall from 185--210 to 165--180~USD/t.
+
+\paragraph{Finance.} Banks lend up to 60\% of the vessel value for up to ten years, less for old vessels~\cite{MBGrefmanual}. Up to 30\% loan-to-value (LTV), senior debt costs 4.51\% fixed or LIBOR plus 1.50\% (about 3\%); above 30\%, a premium applies. LIBOR is forecast to fall from 1.55\% to 1.34\%. Mezzanine debt is more expensive, and an overdraft costs 15\%. About 28\% of the freight is paid when a contract is won and the rest when the vessel leaves the load port, which keeps working-capital needs low.
+
+\paragraph{Assessment.} The best opportunity is cheap Handymax tonnage with own cranes: it fits the largest cargo band, earns the highest mid-size day rate, carries little depreciation and can bid high where competition is weak. The main threats are the crowded Handymax segment, short-notice contracts, the technical risks of old vessels and the liquidity of a small company.
+
+% ---------------------------------------------------------------------
+\section{Strategy: Maximising Return on Equity}\label{sec:strategy}
+
+\companyshort{} has one financial objective: the highest possible return on Mr.\ Jones' equity. RoE is the yearly profit divided by the equity at the start of the year~\cite{ShipFinanceLN}, so in round~1 every USD~50,000 of profit adds one percentage point. With RoI the return on all invested capital, $r_d$ the interest rate on debt, $D$ the debt and $E$ the equity, the leverage relation (before tax) shows our three levers:
+\begin{equation}
+  \text{RoE} = \text{RoI} + \left(\text{RoI} - r_d\right)\frac{D}{E}
+  \label{eq:leverage}
+\end{equation}
+Our strategy pulls all three levers through four focus points, with the SMART targets of Table~\ref{tab:smart}:
+\begin{enumerate}
+  \item \textbf{Raise the RoI.} \emph{Buy cheap capacity:} Handymaxes with own cranes, priced near scrap value and without class docking due within the year, with two to three similar vessels shortlisted per purchase. \emph{Keep vessels earning:} we plan each vessel two to three voyages ahead to keep ballast legs short, and take a time charter or contract of affreightment when one beats the expected spot earnings. \emph{Price on expected value:} we bid the rate that maximises the margin above break-even times the chance of winning, using AIS to see which competitors can reach the load port in time. \emph{Control costs:} we sail at the speed that maximises profit per day (fuel use rises with the third power of speed), bunker in cheap ports and only for planned voyages, and choose the flag with the lowest tax burden at our margins.
+  \item \textbf{Keep the cost of debt low.} Senior debt only, at a variable rate while LIBOR falls, and no mezzanine; a working-capital facility, not the 15\% overdraft, covers temporary cash shortages.
+  \item \textbf{Borrow only where it pays.} With $E$ fixed at USD~5~million, debt only raises RoE when it finances an extra vessel whose expected RoI clearly exceeds $r_d$; idle borrowed cash only costs interest. We keep the equity ratio above 0.25, the lower bound considered healthy in shipping~\cite{ShipFinanceLN}, and a cash buffer of eight weeks of OPEX and bunkers.
+  \item \textbf{Finish strong.} In the final weeks, we avoid costs that only pay off next year, such as positioning voyages without cargo~\cite{MBGintro}.
+\end{enumerate}
+
+\begin{table}[tbp]
+  \centering\small
+  \caption{SMART targets for round~1.}
+  \label{tab:smart}
+  \begin{tabularx}{\textwidth}{@{}>{\raggedright\arraybackslash}Xll@{}}
+    \toprule
+    Target & Measured in & When \\
+    \midrule
+    RoE of at least 20\%, twice Mr.\ Jones' minimum of 10\%~\cite{MBGintro} & Year result & End of round 1 \\
+    Average TCE\textsuperscript{a} of at least USD~12,000 per Handymax-day (twice OPEX) & Trip history & Every quarter \\
+    No vessel without a next cargo for more than two weeks & Fleet overview & Every week \\
+    Bank balance never negative; equity ratio of at least 0.25 & Bank account, balance & Every week \\
+    No vessel with CII rating E & CII per vessel & End of round 1 \\
+    \bottomrule
+  \end{tabularx}\\[2pt]
+  {\footnotesize \textsuperscript{a}\,Time-charter equivalent: freight minus voyage costs, per voyage day including ballast days.}
+\end{table}
+
+% ---------------------------------------------------------------------
+\section{SWOT and Confrontation Matrix}\label{sec:swot}
+
+Table~\ref{tab:swot} summarises the strengths and weaknesses of our strategy and the opportunities and threats of the market. The confrontation matrix (Table~\ref{tab:confrontation}) tests the strategy: each cell scores how much a strength helps to use an opportunity or counter a threat ($+$), or a weakness blocks or worsens it ($-$).
+
+\begin{table}[tbp]
+  \centering\footnotesize
+  \caption{SWOT analysis of \company{}.}
+  \label{tab:swot}
+  \begin{tabularx}{\textwidth}{@{}>{\raggedright\arraybackslash}X>{\raggedright\arraybackslash}X@{}}
+    \toprule
+    \textbf{Strengths} (internal) & \textbf{Weaknesses} (internal) \\
+    \midrule
+    S1 Low capital per tonne, little depreciation &
+    W1 Old vessels: breakdowns, docking, weaker CII \\
+    S2 Data-driven chartering: own model and AIS &
+    W2 Small fleet: one idle vessel weighs heavily \\
+    S3 Geared Handymaxes fit most cargoes and ports &
+    W3 Full spot exposure: no COA or time charters \\
+    S4 Prudent finance: senior debt, buffer, facility &
+    W4 Leverage: fixed instalments, volatile RoE \\
+    \midrule
+    \textbf{Opportunities} (external) & \textbf{Threats} (external) \\
+    \midrule
+    O1 High long-haul rates; Handymax TC rate 3$\times$ OPEX &
+    T1 Crowded Handymax segment, idle competitors \\
+    O2 Weak price competition: 37\% of contracts sailed &
+    T2 Short-notice contracts: ballast legs, idle weeks \\
+    O3 Cheap and falling cost of debt and fuel &
+    T3 Port drafts, docking time and random events \\
+    O4 Large cargoes ($>$70,000~t) rarely contested &
+    T4 Liquidity: 15\% overdraft, premium above 30\% LTV \\
+    \bottomrule
+  \end{tabularx}
+
+  \medskip
+  \caption{Confrontation matrix (0 = no relation, 1 = moderate, 2 = strong).}
+  \label{tab:confrontation}
+  \begin{tabular}{@{}l*{8}{c}r@{}}
+    \toprule
+        & \multicolumn{4}{c}{Opportunities} & \multicolumn{4}{c}{Threats} & \\
+    \cmidrule(lr){2-5}\cmidrule(lr){6-9}
+        & O1 & O2 & O3 & O4 & T1 & T2 & T3 & T4 & Total \\
+    \midrule
+    S1  & 2 & 1 & 2 & 1 & 2 & 1 & 0 & 1 & 10 \\
+    S2  & 2 & 2 & 1 & 2 & 2 & 2 & 1 & 1 & 13 \\
+    S3  & 1 & 1 & 0 & 0 & 1 & 2 & 2 & 0 & 7 \\
+    S4  & 0 & 0 & 2 & 1 & 0 & 1 & 1 & 2 & 7 \\
+    \midrule
+    W1  & $-1$ & 0 & $-1$ & 0 & 0 & 0 & $-2$ & $-1$ & $-5$ \\
+    W2  & $-1$ & $-2$ & 0 & $-1$ & $-1$ & $-2$ & $-2$ & $-1$ & $-10$ \\
+    W3  & 0 & 0 & 0 & 0 & $-2$ & $-2$ & 0 & $-1$ & $-5$ \\
+    W4  & 0 & 0 & 0 & $-1$ & $-1$ & $-1$ & $-1$ & $-2$ & $-6$ \\
+    \midrule
+    Net & $+3$ & $+2$ & $+4$ & $+2$ & $+1$ & $+1$ & $-1$ & $-1$ & \\
+    \bottomrule
+  \end{tabular}
+\end{table}
+
+The quadrant totals (SO $+18$, ST $+19$, WO $-7$, WT $-19$) show that our strengths serve defence as much as attack, while the threats hit our weaknesses hard. The strategy therefore combines attack with risk control:
+\begin{itemize}
+  \item \textbf{Attack (SO):} cheap vessels on high long-haul rates (\combi{S1}{O1}, \combi{S2}{O1}), cheap variable-rate debt (\combi{S1}{O3}, \combi{S4}{O3}) and expected-value bidding against weak competition (\combi{S2}{O2}); a larger vessel only for an identified chain of uncontested large cargoes (\combi{S2}{O4}).
+  \item \textbf{Defend (ST):} a low break-even (\combi{S1}{T1}), planning ahead with AIS (\combi{S2}{T1}, \combi{S2}{T2}), versatile geared Handymaxes (\combi{S3}{T2}, \combi{S3}{T3}) and a working-capital facility (\combi{S4}{T4}).
+  \item \textbf{Improve (WO):} the small fleet cannot carry all uncontested cargoes (\combi{W2}{O2}), so we add debt-financed vessels whenever their expected RoI exceeds $r_d$.
+  \item \textbf{Avoid (WT):} the threats hit a small, old, spot-exposed and leveraged fleet (\combi{W1}{T3}, \combi{W2}{T2}, \combi{W2}{T3}, \combi{W3}{T1}, \combi{W3}{T2}, \combi{W4}{T4}); T3 and T4 score negatively on balance. Hence no vessel with docking due this year, time charters when they beat spot, an eight-week cash buffer and an equity ratio above 0.25.
+\end{itemize}
+Every combination scoring 2 is covered by a focus point: the strategy fits both company and market.
